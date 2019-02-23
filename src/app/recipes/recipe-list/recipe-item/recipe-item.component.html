@@ -3,7 +3,8 @@
     so we know that is the recipe we want to display
  -->
 
-<a href="#" class="list-group-item clearfix" (click)="onSelected()">
+ <!-- (click)="onSelected()" -- not passing through Property Binding anymore -->
+<a class="list-group-item clearfix" style="cursor:pointer" [routerLink]="[index]" routerLinkActive="active">
   <div class="pull-left">
       <h4 class="list-group-item-heading">{{recipe.name}}</h4>
       <p class="list-group-item-text">{{recipe.description}}</p>

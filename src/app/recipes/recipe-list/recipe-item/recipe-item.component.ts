@@ -10,20 +10,25 @@ import { RecipeService } from '../../recipe.service';
 export class RecipeItemComponent implements OnInit {
 
   @Input() recipe: Recipe; //@Input means it comes from another component
+  @Input() index: number;
+
+
   // @Output() recipeSelected = new EventEmitter<void>(); //not using this anymore
 
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
   }
-                        
-  onSelected() {
-    // instead of all of this property binding and event emitting, we will use service to 
-    // send data across components
+  
+  
+  //DONT NEED ANYMORE DUE TO ROUTING
+  // onSelected() {
+  //   // instead of all of this property binding and event emitting, we will use service to 
+  //   // send data across components
 
-    // this.recipeSelected.emit();
-    this.recipeService.recipeSelected.emit(this.recipe);
+  //   // this.recipeSelected.emit();
+  //   this.recipeService.recipeSelected.emit(this.recipe);
 
-  }
+  // }
 
 }
