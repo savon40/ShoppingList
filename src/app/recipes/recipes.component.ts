@@ -11,18 +11,19 @@ import { RecipeService } from 'src/app/recipes/recipe.service';
 export class RecipesComponent implements OnInit {
 
   // recipes : Recipe[];
-  selectedRecipe: Recipe;
-  constructor(private recipeService: RecipeService) { }
+  // selectedRecipe: Recipe;
+  // private recipeService: RecipeService
+  constructor() { }
 
   ngOnInit() {
     // this.recipes = this.recipeService.getRecipes();
 
     //get informed about any changes to recipeSelected
-    this.recipeService.recipeSelected.subscribe(
-      (recipe: Recipe) => {
-        this.selectedRecipe = recipe; //when recipe changes, set it to selected recipe
-      }
-    ); 
+    // this.recipeService.recipeSelected.subscribe(
+    //   (recipe: Recipe) => {
+    //     this.selectedRecipe = recipe; //when recipe changes, set it to selected recipe
+    //   }
+    // ); 
   }
 
 }

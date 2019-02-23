@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { ShoppingListService } from 'src/app/shopping-list/shopping-list.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css']
 })
-export class ShoppingListComponent implements OnInit {
+export class ShoppingListComponent implements OnInit, OnDestroy {
 
   ingredients: Ingredient[];
+  private subscription: Subscription; //doing this so we can kill description on destroy
 
   //moving this to service
   // ingredients: Ingredient[] = [
@@ -22,11 +24,16 @@ export class ShoppingListComponent implements OnInit {
     this.ingredients = this.slService.getIngredients();
     
     // listen to event emitter on shopping list to see if an ingredient is added
-    this.slService.ingredientsChanged.subscribe(
+    //subscribe works for Subject the same as Event Emitter
+    this.subscription = this.slService.ingredientsChanged.subscribe(
       (ingredients: Ingredient[]) => {
         this.ingredients = ingredients;
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   //not needed because of service anymore? 
